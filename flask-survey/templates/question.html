@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{{survey.title}}{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+
+                        <h2 class="flash-text">{{ message }}</h2>
+                {% endfor %}
+            {% endif %}
+{% endwith %}
+<h1>{{survey.questions[idx].question}}</h1>
+
+<form action="/answers" method="POST">
+{% for option in survey.questions[idx].choices %}
+        <label for="choice">{{option}}</label>
+        <input type="radio" name="choice" value="{{option}}"  />
+
+
+{% endfor %}
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

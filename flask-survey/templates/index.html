@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{survey.title}}
+{% endblock %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+
+                        <h2 class="flash-text">{{ message }}</h2>
+                {% endfor %}
+            {% endif %}
+{% endwith %}
+
+<h1>{{survey.instructions}}</h1>
+<form method="POST" action="/start-survey">
+    <button type="submit">Start Survey</button>
+</form>
+
+
+{% endblock %}
